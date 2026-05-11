@@ -1,17 +1,14 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const buttons = document.querySelectorAll('.nav-item');
+function switchPage(pageId) {
   const pages = document.querySelectorAll('.cv-page');
+  pages.forEach(page => page.classList.remove('active'));
 
-  function switchPage(targetId) {
-    buttons.forEach((button) => {
-      button.classList.toggle('active', button.dataset.target === targetId);
-    });
-    pages.forEach((page) => {
-      page.classList.toggle('active', page.id === targetId);
-    });
+  const buttons = document.querySelectorAll('.nav-item');
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  document.getElementById(pageId).classList.add('active');
+
+  const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(pageId));
+  if(clickedBtn) {
+    clickedBtn.classList.add('active');
   }
-
-  buttons.forEach((button) => {
-    button.addEventListener('click', () => switchPage(button.dataset.target));
-  });
-});
+}
