@@ -1,0 +1,381 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f1320;
+  --surface: #131d2d;
+  --surface-2: #1d2840;
+  --text: #edf2ff;
+  --muted: #8aa3c5;
+  --accent: #6bb0ff;
+  --accent-2: #ff7ea3;
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at top left, rgba(107,176,255,0.16), transparent 35%),
+              linear-gradient(180deg, #0b0d17 0%, #121726 100%);
+  color: var(--text);
+}
+
+body {
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+button {
+  font: inherit;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.portfolio-container {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.portfolio-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  padding: 40px 28px;
+  border-right: 1px solid var(--border);
+  background: rgba(14, 18, 30, 0.96);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.dot-accent {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 14px rgba(107,176,255,0.35);
+}
+
+.sidebar-header h2 {
+  font-size: 1.3rem;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.en-sub {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.portfolio-nav {
+  display: grid;
+  gap: 12px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 18px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  text-align: left;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: rgba(107,176,255,0.14);
+  border-color: rgba(107,176,255,0.3);
+}
+
+.nav-index {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--accent);
+}
+
+.nav-en {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.portfolio-main {
+  padding: 40px 48px;
+}
+
+.section-header {
+  margin-bottom: 32px;
+}
+
+.breadcrumb {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+}
+
+.section-header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 2.8vw, 3.2rem);
+  line-height: 1.05;
+}
+
+.role-sub {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.contact-strip {
+  display: grid;
+  gap: 12px;
+  padding: 20px 22px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-top: 24px;
+}
+
+.contact-strip span {
+  display: block;
+  color: var(--muted);
+}
+
+.editorial-block {
+  margin-bottom: 36px;
+  padding: 28px 28px 24px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.block-title {
+  margin: 0 0 18px;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.body-text {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.98rem;
+}
+
+.body-text + .body-text {
+  margin-top: 14px;
+}
+
+.highlight-lead {
+  color: #dbe7ff;
+  margin-bottom: 22px;
+}
+
+.editorial-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-card {
+  padding: 22px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.grid-card h4 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+}
+
+.grid-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.wide-card {
+  grid-column: span 2;
+}
+
+.timeline-item {
+  padding: 20px;
+  margin-bottom: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+}
+
+.timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.inst-title {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.inst-status {
+  color: var(--muted);
+}
+
+.inst-desc {
+  margin: 0;
+  color: var(--muted);
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.badge-lang {
+  background: rgba(107,176,255,0.12);
+  border: 1px solid rgba(107,176,255,0.2);
+}
+
+.badge-core {
+  background: rgba(255,126,163,0.12);
+  border: 1px solid rgba(255,126,163,0.2);
+}
+
+.badge-tech {
+  background: rgba(124,255,178,0.12);
+  border: 1px solid rgba(124,255,178,0.2);
+}
+
+.project-showcase {
+  padding: 24px 26px;
+  border-radius: 22px;
+  border-left: 3px solid transparent;
+  background: rgba(255,255,255,0.03);
+  margin-bottom: 18px;
+}
+
+.project-showcase.positive {
+  border-color: #1d72aa;
+}
+
+.project-showcase.negative {
+  border-color: #ff4747;
+}
+
+.project-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.project-header h4 {
+  margin: 0;
+}
+
+.project-tag {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.feature-list {
+  padding-left: 18px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.feature-list li {
+  margin-bottom: 12px;
+}
+
+.cv-page {
+  display: none;
+}
+
+.cv-page.active {
+  display: block;
+}
+
+@media (max-width: 960px) {
+  .portfolio-container {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-sidebar {
+    position: relative;
+    top: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .portfolio-main {
+    padding: 28px 24px 40px;
+  }
+
+  .editorial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wide-card {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 620px) {
+  .portfolio-sidebar {
+    padding: 28px 20px;
+  }
+
+  .portfolio-main {
+    padding: 24px 18px 36px;
+  }
+
+  .nav-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-header h1 {
+    font-size: 2rem;
+  }
+}

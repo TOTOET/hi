@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>羅然禧 | Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      background-color: #0d0e11;
+      color: #c5c6ca;
+      line-height: 1.7;
+      padding: 30px;
+    }
+
+    .portfolio-container {
+      max-width: 1050px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+    }
+
+    .portfolio-sidebar {
+      background: #13151a;
+      border: 1px solid #20232a;
+      padding: 40px 20px;
+      border-radius: 12px;
+      height: fit-content;
+      position: sticky;
+      top: 40px;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 45px;
+      padding-left: 8px;
+    }
+
+    .dot-accent {
+      width: 8px;
+      height: 8px;
+      background: #ff4747;
+      border-radius: 50%;
+    }
+
+    .sidebar-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    .en-sub {
+      font-size: 13px;
+      color: #6c707a;
+      font-weight: 400;
+      display: block;
+    }
+
+    .portfolio-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-item {
+      background: none;
+      border: 1px solid transparent;
+      color: #8c9099;
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block;
+      width: 100%;
+    }
+
+    .nav-index {
+      font-family: monospace;
+      font-size: 11px;
+      color: #4c505a;
+      margin-right: 6px;
+    }
+
+    .nav-en {
+      font-family: monospace;
+      font-size: 10px;
+      color: #4c505a;
+      display: block;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    .nav-item:hover {
+      background: #1a1d24;
+      color: #ffffff;
+    }
+
+    .nav-item.active {
+      background: #1c1f26;
+      border: 1px solid #282c37;
+      color: #ffffff;
+    }
+
+    .nav-item.active .nav-index {
+      color: #ff4747;
+    }
+
+    .portfolio-main {
+      background: #ffffff;
+      color: #1c1d22;
+      padding: 60px;
+      border-radius: 12px;
+      min-height: 680px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .cv-page {
+      display: none;
+    }
+
+    .cv-page.active {
+      display: block;
+    }
+
+    .breadcrumb {
+      font-family: monospace;
+      font-size: 11px;
+      color: #ff4747;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .section-header h1 {
+      font-size: 26px;
+      color: #121316;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      border-bottom: 2px solid #121316;
+      padding-bottom: 20px;
+      margin-bottom: 35px;
+    }
+
+    .role-sub {
+      font-size: 18px;
+      color: #6a6e79;
+      font-weight: 400;
+    }
+
+    .contact-strip {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+      margin-top: 15px;
+      color: #333;
+      background: #f7f8fa;
+      padding: 15px;
+      border-radius: 6px;
+    }
+
+    .contact-strip a {
+      color: #ff4747;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .editorial-block {
+      margin-bottom: 40px;
+    }
+
+    .block-title {
+      font-size: 13px;
+      color: #ff4747;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .body-text {
+      font-size: 14.5px;
+      color: #383a42;
+      text-align: justify;
+      line-height: 1.8;
+    }
+
+    .highlight-lead {
+      font-weight: bold;
+      color: #121316;
+      margin-bottom: 15px;
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .grid-card {
+      background: #f7f8fa;
+      border: 1px solid #eef0f4;
+      padding: 22px;
+      border-radius: 8px;
+    }
+
+    .grid-card h4 {
+      font-size: 14.5px;
+      color: #121316;
+      margin-bottom: 8px;
+      border-left: 2px solid #ff4747;
+      padding-left: 8px;
+    }
+
+    .grid-card p {
+      font-size: 13px;
+      color: #5c5f66;
+    }
+
+    .timeline-item {
+      border-left: 1px solid #eef0f4;
+      padding-left: 20px;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 7px;
+      width: 5px;
+      height: 5px;
+      background: #ff4747;
+      border-radius: 50%;
+    }
+
+    .timeline-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .inst-title {
+      font-weight: 700;
+      color: #121316;
+    }
+
+    .inst-status {
+      font-family: monospace;
+      font-size: 12px;
+      color: #8c9099;
+    }
+
+    .inst-desc {
+      font-size: 13px;
+      color: #5c5f66;
+      margin-top: 4px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 6px 14px;
+      background: #f7f8fa;
+      color: #5c5f66;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .badge-lang {
+      background: #eef7fc;
+      color: #1d72aa;
+    }
+
+    .badge-core {
+      background: #fff4f4;
+      color: #ff4747;
+    }
+
+    .badge-tech {
+      background: #f9f4ff;
+      color: #8a47ff;
+    }
+
+    .project-showcase {
+      background: #f7f8fa;
+      border: 1px solid #eef0f4;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 15px;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .project-header h4 {
+      font-size: 15px;
+      color: #121316;
+    }
+
+    .project-tag {
+      font-family: monospace;
+      font-size: 11px;
+      color: #ff4747;
+      font-weight: bold;
+    }
+
+    @media (max-width: 850px) {
+      .portfolio-container {
+        grid-template-columns: 1fr;
+      }
+      .portfolio-sidebar {
+        position: relative;
+        top: 0;
+      }
+      .editorial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="portfolio-container">
+    <aside class="portfolio-sidebar">
+      <div class="sidebar-header">
+        <div class="dot-accent"></div>
+        <h2>羅然禧 <span class="en-sub">Ethan Law</span></h2>
+      </div>
+      <nav class="portfolio-nav">
+        <button class="nav-item active" onclick="switchPage('page1')">
+          <span class="nav-index">01</span> 應聘動機 <span class="nav-en">// MANIFESTO</span>
+        </button>
+        <button class="nav-item" onclick="switchPage('page2')">
+          <span class="nav-index">02</span> 履歷檔案 <span class="nav-en">// INTEL</span>
+        </button>
+        <button class="nav-item" onclick="switchPage('page3')">
+          <span class="nav-index">03</span> 職位剖析 <span class="nav-en">// ANALYSIS</span>
+        </button>
+      </nav>
+    </aside>
+
+    <main class="portfolio-main">
+      <div id="page1" class="cv-page active">
+        <header class="section-header">
+          <div class="breadcrumb">TARGETING // GREY APAC [葛瑞廣告]</div>
+          <h1>應聘職位：副創意總監 <span class="role-sub">(Associate Creative Director)</span></h1>
+        </header>
+        <section class="editorial-block">
+          <h3 class="block-title">應聘原因 / Motivation</h3>
+          <p class="body-text">我對「宣傳與視覺傳達」有著非常純粹的熱情。在我的理解中，宣傳不只是將大量的圖文塞進多媒體版面上，而是去提煉一個有趣的核心概念並傳達給大眾。</p>
+          <p class="body-text">Grey APAC 堅持的創意哲學極具吸引力，雖然這是一份中學生履歷，但我渴望挑戰這個全職管理職位，把我對平面視覺、影像藝術的想法放進真實的宣傳計劃中。</p>
+        </section>
+        <section class="editorial-block">
+          <h3 class="block-title">核心宣傳優勢 / Strengths</h3>
+          <p class="body-text highlight-lead">在過往的學校項目與個人學習中，我主要累積了以下優勢與相關經驗：</p>
+          <div class="editorial-grid">
+            <div class="grid-card">
+              <h4>九年繪畫背景與審美</h4>
+              <p>擁有長達九年的專業繪畫學習經歷。這段深厚的藝術積累賦予了我優秀的視覺审美品味、色彩敏銳度以及空間構圖能力。</p>
+            </div>
+            <div class="grid-card">
+              <h4>海報與排版設計</h4>
+              <p>擁有海報及排版的設計經驗。日常熟練運用 Canva 進行排版與物料輸出，具備平面視覺處理能力。</p>
+            </div>
+            <div class="grid-card wide-card">
+              <h4>良好的溝通與團隊合作</h4>
+              <p>曾在小組影片製作中擔任過一次副導（Assistant Director）。這次經驗讓我學會如何在團隊中進行有效的協調與溝通，並與不同崗位的同學密切合作共同完成專案。</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div id="page2" class="cv-page">
+        <header class="section-header">
+          <div class="breadcrumb">PROFILE // IDENTIFICATION</div>
+          <h1>聯絡與專業檔案</h1>
+          <div class="contact-strip">
+            <span><strong>電話號碼 //</strong> +852 9859 9952</span>
+            <span><strong>電子郵件 //</strong> <a href="mailto:2122131@student.creativehk.edu.hk">2122131@student.creativehk.edu.hk</a></span>
+            <span><strong>居住地方 //</strong> 香港大埔</span>
+          </div>
+        </header>
+        <section class="editorial-block">
+          <h3 class="block-title">教育背景 / Education</h3>
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="inst-title">香港兆基創意書院 (HKSC)</span>
+              <span class="inst-status">// 中學課程 畢業</span>
+            </div>
+            <p class="inst-desc">專注在藝術設計、多媒體實驗創作與當代視覺美學教育。</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="inst-title">保良局田家炳千禧小學</span>
+              <span class="inst-status">// 小學課程 畢業</span>
+            </div>
+          </div>
+        </section>
+        <section class="editorial-block">
+          <h3 class="block-title">語言能力 / Language</h3>
+          <div class="badge-row">
+            <span class="badge badge-lang">廣東話 [ 良好應用 ]</span>
+            <span class="badge badge-lang">普通話 [ 良好應用 ]</span>
+            <span class="badge">英文 [ 正常溝通 ]</span>
+          </div>
+        </section>
+        <section class="editorial-block">
+          <h3 class="block-title">技術矩陣與特長 / Creative Toolkit</h3>
+          <div class="badge-row wrap">
+            <span class="badge badge-core">九年繪畫實踐 (視覺審美)</span>
+            <span class="badge badge-core">Canva 海報與排版</span>
+            <span class="badge badge-core">團隊協作與溝通</span>
+            <span class="badge badge-tech">DaVinci Resolve 影片後期</span>
+            <span class="badge badge-tech">TouchDesigner 互動影像</span>
+            <span class="badge">HTML5 / CSS3 / CodePen</span>
+          </div>
+        </section>
+      </div>
+
+      <div id="page3" class="cv-page">
+        <header class="section-header">
+          <div class="breadcrumb">ANALYSIS // RISKS & BENEFITS</div>
+          <h1>副創意總監職位的潛在優缺點分析</h1>
+        </header>
+        <section class="editorial-block">
+          <div class="project-showcase positive">
+            <div class="project-header">
+              <h4>🟢 潛在優點與核心吸引力</h4>
+              <span class="project-tag">// BENEFITS</span>
+            </div>
+            <ul class="body-text feature-list">
+              <li><strong>環境氣氛良好：</strong>廣告公司充滿創新氛圍與設計美感，能與優秀同行深度交流，有利於拓展新媒體與平面視覺眼界。</li>
+              <li><strong>創意成就感：</strong>能跨越媒介限制，親自把天馬行空的想法變成真實的大型宣傳骨架，落地反饋直接，帶來巨大的個人滿足感。</li>
+            </ul>
+          </div>
+          <div class="project-showcase negative">
+            <div class="project-header">
+              <h4>🔴 潛在缺點與陷阱</h4>
+              <span class="project-tag">// RISKS & PITFALLS</span>
+            </div>
+            <ul class="body-text feature-list">
+              <li><strong>OT 加班風險：</strong>4A 廣告代理商非常依賴客戶時程，常態性的高強度熬夜提案和修改，极易帶來過勞與心理高壓。</li>
+              <li><strong>通勤時間長途消耗：</strong>我本身居住在大埔，若辦公地點位於港島或九龍商業核心區，每日長途往返將劇烈擠壓休息和睡眠時間。</li>
+              <li><strong>工作保障受市場衝擊：</strong>廣告行業的穩定性緊扣宏觀經濟與客戶預算，面對不景氣或競標失敗時，將直接承受嚴酷的考核與淘汰壓力。</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script>
+    function switchPage(pageId) {
+      const pages = document.querySelectorAll('.cv-page');
+      pages.forEach(page => page.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.nav-item');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(pageId).classList.add('active');
+
+      const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(pageId));
+      if (clickedBtn) {
+        clickedBtn.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
